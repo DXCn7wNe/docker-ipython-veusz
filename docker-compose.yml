@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+    app:
+        build:
+            context: .
+        restart: always
+        tty: true
+        user: "${DOCKER_USER}"
+        environment:
+            - DISPLAY=${DISPLAY}
+        working_dir: /home/${USER}
+        volumes:
+            - /home/${USER}:/home/${USER}:rw
+            - /tmp/.X11-unix:/tmp/.X11-unix:rw
+            - /etc/passwd:/etc/passwd:ro 
+            - /etc/group:/etc/group:ro
+            - /etc/shadow:/etc/shadow:ro
+            - /etc/sudoers.d:/etc/sudoers.d:ro
+        command: ["/usr/bin/ipython3"]
+
