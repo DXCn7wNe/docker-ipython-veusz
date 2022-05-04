@@ -9,6 +9,8 @@ services:
         user: "${DOCKER_USER}"
         environment:
             - DISPLAY=${DISPLAY}
+            - http_proxy=${http_proxy}
+            - https_proxy=${https_proxy}
         working_dir: /home/${USER}
         volumes:
             - /home/${USER}:/home/${USER}:rw
